@@ -1,4 +1,6 @@
+# TODO: apidocs (BR: hotdoc, like libwpe.spec)
 Summary:	A WPE backend designed for Linux desktop systems
+Summary(pl.UTF-8):	Backend WPE zaprojektowany dla biurkowych systemów linuksowych
 Name:		wpebackend-fdo
 Version:	1.4.0
 Release:	1
@@ -6,40 +8,52 @@ License:	BSD
 Group:		Libraries
 Source0:	https://wpewebkit.org/releases/%{name}-%{version}.tar.xz
 # Source0-md5:	63553c3f43593c2a8c587c32e88fdf3c
+Patch0:		%{name}-libdir.patch
 URL:		https://wpewebkit.org/
-BuildRequires:	Mesa-libEGL-devel
-BuildRequires:	cmake
-BuildRequires:	glib2-devel
+BuildRequires:	EGL-devel
+BuildRequires:	cmake >= 3.0
+BuildRequires:	glib2-devel >= 2.0
+BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libwpe-devel
-BuildRequires:	wayland-devel
-BuildRequires:	xorg-lib-libxkbcommon-devel
+BuildRequires:	rpmbuild(macros) >= 1.605
+BuildRequires:	wayland-devel >= 1.10
+BuildRequires:	wayland-egl-devel >= 1.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 A WPE backend designed for Linux desktop systems.
 
+%description -l pl.UTF-8
+Backend WPE zaprojektowany dla biurkowych systemów linuksowych.
+
 %package devel
-Summary:	Header files for %{name} library
-Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki %{name}
+Summary:	Header files for WPEBackend-fdo library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki WPEBackend-fdo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libwpe-devel
 
 %description devel
-Header files for %{name} library.
+Header files for WPEBackend-fdo library.
 
 %description devel -l pl.UTF-8
-Pliki nagłówkowe biblioteki %{name}.
+Pliki nagłówkowe biblioteki WPEBackend-fdo.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%cmake .
+install -d build
+cd build
+%cmake ..
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install \
+
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -59,5 +73,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libWPEBackend-fdo-1.0.so
 %{_includedir}/wpe-fdo-1.0
 %{_pkgconfigdir}/wpebackend-fdo-1.0.pc
-
-%changelog
