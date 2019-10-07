@@ -3,7 +3,7 @@ Summary:	A WPE backend designed for Linux desktop systems
 Summary(pl.UTF-8):	Backend WPE zaprojektowany dla biurkowych systemów linuksowych
 Name:		wpebackend-fdo
 Version:	1.4.0
-Release:	1
+Release:	2
 License:	BSD
 Group:		Libraries
 Source0:	https://wpewebkit.org/releases/%{name}-%{version}.tar.xz
