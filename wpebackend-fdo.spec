@@ -2,12 +2,12 @@
 Summary:	A WPE backend designed for Linux desktop systems
 Summary(pl.UTF-8):	Backend WPE zaprojektowany dla biurkowych systemów linuksowych
 Name:		wpebackend-fdo
-Version:	1.4.0
-Release:	2
+Version:	1.4.1
+Release:	1
 License:	BSD
 Group:		Libraries
 Source0:	https://wpewebkit.org/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	63553c3f43593c2a8c587c32e88fdf3c
+# Source0-md5:	c6362491a4a38ddac42b66f140e1cff2
 Patch0:		%{name}-libdir.patch
 URL:		https://wpewebkit.org/
 BuildRequires:	EGL-devel
@@ -15,6 +15,7 @@ BuildRequires:	cmake >= 3.0
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libwpe-devel
+BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	wayland-devel >= 1.10
 BuildRequires:	wayland-egl-devel >= 1.10
