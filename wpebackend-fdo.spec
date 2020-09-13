@@ -2,24 +2,24 @@
 Summary:	A WPE backend designed for Linux desktop systems
 Summary(pl.UTF-8):	Backend WPE zaprojektowany dla biurkowych systemów linuksowych
 Name:		wpebackend-fdo
-Version:	1.6.1
+Version:	1.8.0
 Release:	1
 License:	BSD
 Group:		Libraries
 Source0:	https://wpewebkit.org/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	ea6c2a13e6c2423f2c2b0b31fcf9567b
+# Source0-md5:	6df96f80ff34c02d56f32a7a153a62c0
 Patch0:		%{name}-libdir.patch
 URL:		https://wpewebkit.org/
 BuildRequires:	EGL-devel
 BuildRequires:	cmake >= 3.3
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	libstdc++-devel >= 6:4.7
-BuildRequires:	libwpe-devel >= 1.6.0
+BuildRequires:	libwpe-devel >= 1.8.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	wayland-devel >= 1.10
 BuildRequires:	wayland-egl-devel >= 1.10
-Requires:	libwpe >= 1.6.0
+Requires:	libwpe >= 1.8.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,7 +33,7 @@ Summary:	Header files for WPEBackend-fdo library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki WPEBackend-fdo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libwpe-devel >= 1.6.0
+Requires:	libwpe-devel >= 1.8.0
 
 %description devel
 Header files for WPEBackend-fdo library.
