@@ -2,12 +2,12 @@
 Summary:	A WPE backend designed for Linux desktop systems
 Summary(pl.UTF-8):	Backend WPE zaprojektowany dla biurkowych systemów linuksowych
 Name:		wpebackend-fdo
-Version:	1.8.0
+Version:	1.8.1
 Release:	1
 License:	BSD
 Group:		Libraries
 Source0:	https://wpewebkit.org/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	6df96f80ff34c02d56f32a7a153a62c0
+# Source0-md5:	e7083e9fd325f289b23253b770d08d2e
 Patch0:		%{name}-libdir.patch
 URL:		https://wpewebkit.org/
 BuildRequires:	EGL-devel
