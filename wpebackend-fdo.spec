@@ -2,24 +2,25 @@
 Summary:	A WPE backend designed for Linux desktop systems
 Summary(pl.UTF-8):	Backend WPE zaprojektowany dla biurkowych systemów linuksowych
 Name:		wpebackend-fdo
-Version:	1.8.1
+Version:	1.10.0
 Release:	1
 License:	BSD
 Group:		Libraries
 Source0:	https://wpewebkit.org/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	e7083e9fd325f289b23253b770d08d2e
-Patch0:		%{name}-libdir.patch
+# Source0-md5:	306adbb0c66dc753e1794c83b7a2682b
 URL:		https://wpewebkit.org/
 BuildRequires:	EGL-devel
-BuildRequires:	cmake >= 3.3
 BuildRequires:	glib2-devel >= 2.0
+BuildRequires:	libepoxy-devel
 BuildRequires:	libstdc++-devel >= 6:4.7
-BuildRequires:	libwpe-devel >= 1.8.0
+BuildRequires:	libwpe-devel >= 1.10.0
+BuildRequires:	meson >= 0.49
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.605
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	wayland-devel >= 1.10
 BuildRequires:	wayland-egl-devel >= 1.10
-Requires:	libwpe >= 1.8.0
+Requires:	libwpe >= 1.10.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,7 +34,7 @@ Summary:	Header files for WPEBackend-fdo library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki WPEBackend-fdo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libwpe-devel >= 1.8.0
+Requires:	libwpe-devel >= 1.10.0
 
 %description devel
 Header files for WPEBackend-fdo library.
@@ -43,20 +44,16 @@ Pliki nagłówkowe biblioteki WPEBackend-fdo.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
-install -d build
-cd build
-%cmake ..
+%meson build
 
-%{__make}
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} -C build install \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %clean
 rm -rf $RPM_BUILD_ROOT
